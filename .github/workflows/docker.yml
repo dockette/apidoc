@@ -1,0 +1,84 @@
+name: "Docker"
+
+on:
+  workflow_dispatch:
+
+  push:
+    branches: ["master"]
+
+  schedule:
+    - cron: "0 8 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: "Test"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build image for testing
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./Dockerfile
+          push: false
+          tags: dockette/apidoc:latest-test
+          platforms: linux/amd64
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          load: true
+
+      - name: Test Caddy is running
+        run: |
+          docker run --rm -d --name apidoc-test -p 8000:8000 dockette/apidoc:latest-test
+          sleep 2
+          curl -sf http://localhost:8000/ > /dev/null
+          echo "Landing page OK"
+
+      - name: Test Swagger UI
+        run: |
+          curl -sf http://localhost:8000/swagger/ > /dev/null
+          echo "Swagger UI OK"
+
+      - name: Test Redoc
+        run: |
+          curl -sf http://localhost:8000/redoc/ > /dev/null
+          echo "Redoc OK"
+
+      - name: Test Stoplight Elements
+        run: |
+          curl -sf http://localhost:8000/elements/ > /dev/null
+          echo "Stoplight Elements OK"
+
+      - name: Test RapiDoc
+        run: |
+          curl -sf http://localhost:8000/rapidoc/ > /dev/null
+          echo "RapiDoc OK"
+
+      - name: Test Scalar
+        run: |
+          curl -sf http://localhost:8000/scalar/ > /dev/null
+          echo "Scalar OK"
+
+      - name: Cleanup
+        if: always()
+        run: docker stop apidoc-test || true
+
+  build:
+    name: "Build"
+    needs: test
+    uses: dockette/.github/.github/workflows/docker.yml@master
+    secrets: inherit
+    with:
+      image: "dockette/apidoc"
+      tag: "latest"
+      context: "."
+      platforms: "linux/amd64,linux/arm64"
+      push: ${{ github.ref == 'refs/heads/master' }}
