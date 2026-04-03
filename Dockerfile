@@ -50,24 +50,24 @@ RUN curl -sSL -o /tmp/swagger-ui.tar.gz \
 
 # REDOC ########################################################################
 RUN mkdir -p /srv/www/redoc && \
-    curl -sSL -o /srv/www/redoc/redoc.standalone.js \
+    curl -sSL -o /srv/www/redoc/redoc.js \
         https://cdn.redoc.ly/redoc/v${REDOC_VERSION}/bundles/redoc.standalone.js
 
 # STOPLIGHT ELEMENTS ###########################################################
 RUN mkdir -p /srv/www/elements && \
-    curl -sSL -o /srv/www/elements/web-components.min.js \
+    curl -sSL -o /srv/www/elements/elements.js \
         https://unpkg.com/@stoplight/elements@${STOPLIGHT_ELEMENTS_VERSION}/web-components.min.js && \
-    curl -sSL -o /srv/www/elements/styles.min.css \
+    curl -sSL -o /srv/www/elements/elements.css \
         https://unpkg.com/@stoplight/elements@${STOPLIGHT_ELEMENTS_VERSION}/styles.min.css
 
 # RAPIDOC ######################################################################
 RUN mkdir -p /srv/www/rapidoc && \
-    curl -sSL -o /srv/www/rapidoc/rapidoc-min.js \
+    curl -sSL -o /srv/www/rapidoc/rapidoc.js \
         https://unpkg.com/rapidoc@${RAPIDOC_VERSION}/dist/rapidoc-min.js
 
 # SCALAR #######################################################################
 RUN mkdir -p /srv/www/scalar && \
-    curl -sSL -o /srv/www/scalar/api-reference.js \
+    curl -sSL -o /srv/www/scalar/scalar.js \
         https://cdn.jsdelivr.net/npm/@scalar/api-reference
 
 # HTML PAGES ###################################################################
