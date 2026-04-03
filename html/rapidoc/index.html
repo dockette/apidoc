@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RapiDoc</title>
+    <script type="module" src="rapidoc-min.js"></script>
+    <style>
+        body { margin: 0; padding: 0; height: 100vh; }
+    </style>
+</head>
+<body>
+    <rapi-doc id="rapidoc"
+        theme="light"
+        render-style="read"
+        show-header="true"
+        allow-try="true"
+        allow-authentication="true"
+        style="height: 100vh; width: 100%;"
+    ></rapi-doc>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const specUrl = params.get('url') || 'https://petstore3.swagger.io/api/v3/openapi.json';
+
+        document.getElementById('rapidoc').setAttribute('spec-url', specUrl);
+    </script>
+</body>
+</html>

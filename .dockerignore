@@ -1,0 +1,7 @@
+.git
+.github
+LICENSE
+README.md
+Makefile
+.docs
+node_modules

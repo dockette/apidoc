@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redoc</title>
+    <style>
+        body { margin: 0; padding: 0; }
+    </style>
+</head>
+<body>
+    <div id="redoc-container"></div>
+    <script src="redoc.standalone.js"></script>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const specUrl = params.get('url') || 'https://petstore3.swagger.io/api/v3/openapi.json';
+
+        Redoc.init(specUrl, {
+            scrollYOffset: 0,
+            theme: {
+                colors: { primary: { main: '#0066cc' } }
+            }
+        }, document.getElementById('redoc-container'));
+    </script>
+</body>
+</html>

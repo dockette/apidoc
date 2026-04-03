@@ -1,0 +1,5 @@
+services:
+  apidoc:
+    image: dockette/apidoc
+    ports:
+      - "8000:8000"
