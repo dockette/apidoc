@@ -18,17 +18,67 @@ Docker image bundling multiple OpenAPI/Swagger documentation renderers. Point an
 
 ## Viewers
 
-| Viewer | Screenshot | URL | Description |
-|--------|------------|-----|-------------|
-| **Swagger UI** | ![](.docs/swagger.png) | `/swagger/?url=<spec>` | Classic interactive API explorer from [swagger.io](https://swagger.io/tools/swagger-ui/) |
-| **Redoc** | ![](.docs/redoc.png) | `/redoc/?url=<spec>` | Clean, responsive, three-panel documentation from [Redocly](https://redocly.com/redoc) |
-| **Stoplight Elements** | ![](.docs/elements.png) | `/elements/?url=<spec>` | Modern API documentation with try-it-out from [Stoplight](https://stoplight.io/open-source/elements) |
-| **RapiDoc** | ![](.docs/rapidoc.png) | `/rapidoc/?url=<spec>` | Web component based API docs with customizable themes from [RapiDoc](https://rapidocweb.com/) |
-| **Scalar** | ![](.docs/scalar.png) | `/scalar/?url=<spec>` | Beautiful, modern API reference from [Scalar](https://scalar.com/) |
+<table>
+  <tr>
+    <th colspan="3">Swagger UI</th>
+  </tr>
+  <tr>
+    <td colspan="3"><img src=".docs/swagger.png" alt="Swagger UI" width="100%"></td>
+  </tr>
+  <tr>
+    <td><code>/swagger/?url=&lt;spec&gt;</code></td>
+    <td>Classic interactive API explorer</td>
+    <td><a href="https://swagger.io/tools/swagger-ui/">swagger.io</a></td>
+  </tr>
+  <tr>
+    <th colspan="3">Redoc</th>
+  </tr>
+  <tr>
+    <td colspan="3"><img src=".docs/redoc.png" alt="Redoc" width="100%"></td>
+  </tr>
+  <tr>
+    <td><code>/redoc/?url=&lt;spec&gt;</code></td>
+    <td>Clean, responsive, three-panel documentation</td>
+    <td><a href="https://redocly.com/redoc">Redocly</a></td>
+  </tr>
+  <tr>
+    <th colspan="3">Stoplight Elements</th>
+  </tr>
+  <tr>
+    <td colspan="3"><img src=".docs/elements.png" alt="Stoplight Elements" width="100%"></td>
+  </tr>
+  <tr>
+    <td><code>/elements/?url=&lt;spec&gt;</code></td>
+    <td>Modern API documentation with try-it-out</td>
+    <td><a href="https://stoplight.io/open-source/elements">Stoplight</a></td>
+  </tr>
+  <tr>
+    <th colspan="3">RapiDoc</th>
+  </tr>
+  <tr>
+    <td colspan="3"><img src=".docs/rapidoc.png" alt="RapiDoc" width="100%"></td>
+  </tr>
+  <tr>
+    <td><code>/rapidoc/?url=&lt;spec&gt;</code></td>
+    <td>Web component based API docs with customizable themes</td>
+    <td><a href="https://rapidocweb.com/">RapiDoc</a></td>
+  </tr>
+  <tr>
+    <th colspan="3">Scalar</th>
+  </tr>
+  <tr>
+    <td colspan="3"><img src=".docs/scalar.png" alt="Scalar" width="100%"></td>
+  </tr>
+  <tr>
+    <td><code>/scalar/?url=&lt;spec&gt;</code></td>
+    <td>Beautiful, modern API reference</td>
+    <td><a href="https://scalar.com/">Scalar</a></td>
+  </tr>
+</table>
 
 ### Landing Page
 
-![](.docs/landing.png)
+<img src=".docs/landing.png" alt="Landing Page" width="100%">
 
 ## Usage
 
