@@ -82,3 +82,19 @@ jobs:
       context: "."
       platforms: "linux/amd64,linux/arm64"
       push: ${{ github.ref == 'refs/heads/master' }}
+
+  readme:
+    name: "Docker Hub README"
+    needs: build
+    runs-on: ubuntu-latest
+    if: ${{ github.ref == 'refs/heads/master' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Update Docker Hub description
+        uses: peter-evans/dockerhub-description@v4
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          repository: dockette/apidoc
