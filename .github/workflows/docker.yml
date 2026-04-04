@@ -83,8 +83,8 @@ jobs:
       platforms: "linux/amd64,linux/arm64"
       push: ${{ github.ref == 'refs/heads/master' }}
 
-  readme:
-    name: "Docker Hub README"
+  docs:
+    name: "Docs"
     needs: build
     runs-on: ubuntu-latest
     if: ${{ github.ref == 'refs/heads/master' }}
