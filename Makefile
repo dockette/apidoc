@@ -2,11 +2,12 @@ DOCKER_IMAGE=dockette/apidoc
 DOCKER_TAG?=latest
 DOCKER_TEST_PORT?=8000
 
-.PHONY: build test run push
 
+.PHONY: build
 build:
 	docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} .
 
+.PHONY: test
 test: build
 	@set -eu; \
 	container="apidoc-test-$$(date +%s)"; \
@@ -27,8 +28,10 @@ test: build
 		echo "$$endpoint OK"; \
 	done
 
+.PHONY: run
 run:
 	docker run --rm -p 8000:8000 ${DOCKER_IMAGE}:${DOCKER_TAG}
 
+.PHONY: push
 push:
 	docker push ${DOCKER_IMAGE}:${DOCKER_TAG}
