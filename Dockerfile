@@ -1,15 +1,15 @@
-FROM debian:bookworm-slim
+FROM debian:trixie-slim
 
 # METADATA #####################################################################
 LABEL maintainer="dockette <https://github.com/dockette>"
 LABEL description="Dockerized OpenAPI documentation viewer with Swagger UI, Redoc, Stoplight Elements, RapiDoc and Scalar"
 
 # VERSIONS #####################################################################
-ENV SWAGGER_UI_VERSION=5.21.0
-ENV REDOC_VERSION=2.5.0
-ENV STOPLIGHT_ELEMENTS_VERSION=9.0.16
+ENV SWAGGER_UI_VERSION=5.33.0
+ENV REDOC_VERSION=2.5.4
+ENV STOPLIGHT_ELEMENTS_VERSION=9.0.25
 ENV RAPIDOC_VERSION=9.3.8
-ENV SCALAR_VERSION=2.0.18
+ENV SCALAR_VERSION=1.72.1
 
 # INSTALLATION #################################################################
 RUN apt update && \
@@ -68,7 +68,7 @@ RUN mkdir -p /srv/www/rapidoc && \
 # SCALAR #######################################################################
 RUN mkdir -p /srv/www/scalar && \
     curl -sSL -o /srv/www/scalar/scalar.js \
-        https://cdn.jsdelivr.net/npm/@scalar/api-reference
+        https://cdn.jsdelivr.net/npm/@scalar/api-reference@${SCALAR_VERSION}/dist/browser/standalone.js
 
 # HTML PAGES ###################################################################
 COPY html/ /srv/www/
