@@ -19,66 +19,29 @@
 
 ## Usage
 
-Run the image on port `8000`:
+Run the image and open `http://localhost:8000`:
 
 ```sh
-docker run --rm -p 8000:8000 dockette/apidoc:latest
+docker run -p 8000:8000 dockette/apidoc
 ```
 
-Based on `debian:trixie-slim` with Caddy. It needs no volume and no environment variable; open
-`http://localhost:8000` and pick a viewer.
-
-Every viewer takes the spec from the `url` query parameter. Open the Petstore spec in each one:
-
-```text
-http://localhost:8000/swagger/?url=https://petstore3.swagger.io/api/v3/openapi.json
-http://localhost:8000/redoc/?url=https://petstore3.swagger.io/api/v3/openapi.json
-http://localhost:8000/elements/?url=https://petstore3.swagger.io/api/v3/openapi.json
-http://localhost:8000/rapidoc/?url=https://petstore3.swagger.io/api/v3/openapi.json
-http://localhost:8000/scalar/?url=https://petstore3.swagger.io/api/v3/openapi.json
-```
-
-Without `url`, each viewer opens the Petstore spec. The viewer assets are served from the container, so the
-browser loads no viewer code from a CDN.
-
-> [!IMPORTANT]
-> The browser fetches the spec, not the container. A spec on another host must send CORS headers that allow
-> `http://localhost:8000`, or the viewer shows a load error.
-
-## Local Spec
-
-Caddy serves every file under `/srv/www`. Mount your spec there and open it by URL:
-
-```sh
-docker run --rm -p 8000:8000 \
-    -v $(pwd)/openapi.yaml:/srv/www/openapi.yaml:ro \
-    dockette/apidoc:latest
-```
-
-Then open `http://localhost:8000/redoc/?url=http://localhost:8000/openapi.yaml`, or any other viewer path.
-
-## Compose
-
-Start the service from the [`docker-compose.yml`](https://github.com/dockette/apidoc/blob/master/docker-compose.yml)
-in this repository:
-
-```yaml
-services:
-  apidoc:
-    image: dockette/apidoc
-    ports:
-      - "8000:8000"
-```
-
-Then run:
-
-```sh
-docker compose up
-```
+The image serves five OpenAPI viewers with Caddy, and every viewer asset is inside the container, so it needs no
+configuration. Each viewer loads the spec from its `url` query parameter, for example
+`/redoc/?url=https://petstore3.swagger.io/api/v3/openapi.json`, and the browser fetches it, so a spec on another
+host must allow CORS. To serve your own spec, mount it under `/srv/www`; see the
+[OpenAPI Specification](https://spec.openapis.org/oas/latest.html) for the format.
 
 > [!CAUTION]
 > The container runs as root and serves plain HTTP with no authentication. Don't expose port `8000` to the
 > internet; put a proxy with TLS in front of it.
+
+## Versions
+
+| Tag | Viewers |
+|-----|---------|
+| `dockette/apidoc:latest` | Swagger UI `5.33.0`, Redoc `2.5.4`, Stoplight Elements `9.0.25`, RapiDoc `9.3.8`, Scalar `1.72.1` |
+
+The tag is built for `linux/amd64` and `linux/arm64` and rebuilt every Monday.
 
 ## Viewers
 
@@ -117,15 +80,12 @@ An API reference with request examples from [Scalar](https://scalar.com/) `1.72.
 
 ## Development
 
-Build the image and run it on port `8000`:
-
 ```sh
-make build
-make run
+make build   # build the image
+make run     # run it on port 8000
 ```
 
-The published tag is `dockette/apidoc:latest`, built for `linux/amd64` and `linux/arm64` and rebuilt every
-Monday.
+Run `make` to list every target.
 
 ## Maintenance
 
