@@ -5,9 +5,10 @@
 </p>
 
 <p align=center>
-  <a href="https://hub.docker.com/r/dockette/apidoc/"><img src="https://badgen.net/docker/pulls/dockette/apidoc"></a>
-  <a href="https://bit.ly/ctteg"><img src="https://badgen.net/badge/support/gitter/cyan"></a>
-  <a href="https://github.com/sponsors/f3l1x"><img src="https://badgen.net/badge/sponsor/donations/F96854"></a>
+   <a href="https://github.com/dockette/apidoc/actions"><img src="https://github.com/dockette/apidoc/actions/workflows/docker.yml/badge.svg" alt="GitHub Actions"></a>
+   <a href="https://hub.docker.com/r/dockette/apidoc"><img src="https://img.shields.io/docker/pulls/dockette/apidoc.svg" alt="Docker Hub pulls"></a>
+   <a href="https://github.com/sponsors/f3l1x"><img src="https://img.shields.io/badge/sponsor-GitHub%20Sponsors-ea4aaa" alt="GitHub Sponsors"></a>
+   <a href="https://github.com/orgs/dockette/discussions"><img src="https://img.shields.io/badge/support-discussions-6f42c1" alt="Support/Discussions"></a>
 </p>
 
 ------
