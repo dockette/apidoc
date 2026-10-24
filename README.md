@@ -112,11 +112,18 @@ services:
 docker compose up
 ```
 
+## Versions
+
+The release version is the date in [`VERSION`](VERSION). CI pushes `latest` also as `dockette/apidoc:<VERSION>`.
+To release, run `make release`, commit and push to `master`.
+
 ## Development
 
 ```sh
 make build
 make run
+make version
+make release
 ```
 
 ## Maintenance
