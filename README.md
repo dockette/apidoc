@@ -12,9 +12,13 @@
 
 ------
 
-## Prologue
+Docker image bundling OpenAPI documentation viewers: Swagger UI, Redoc, Stoplight Elements, RapiDoc and Scalar. Point
+any viewer at your spec with the `?url=` parameter.
 
-Docker image bundling multiple OpenAPI/Swagger documentation renderers. Point any viewer at your spec via `?url=` parameter. All assets are bundled locally, no CDN calls at runtime.
+## Features
+
+- Five viewers and a landing page, served by Caddy on port `8000`
+- All assets are bundled locally, no CDN calls at runtime
 
 ## Viewers
 
@@ -83,22 +87,22 @@ Docker image bundling multiple OpenAPI/Swagger documentation renderers. Point an
 ## Usage
 
 ```sh
-docker run \
-    --rm \
-    -p 8000:8000 \
-    dockette/apidoc
+docker run --rm -p 8000:8000 dockette/apidoc
+
+# Landing page with all viewers
+open http://localhost:8000
+
+# Viewers, with a spec in the `url` parameter
+open 'http://localhost:8000/swagger/?url=https://petstore3.swagger.io/api/v3/openapi.json'
+open 'http://localhost:8000/redoc/?url=https://petstore3.swagger.io/api/v3/openapi.json'
+open 'http://localhost:8000/elements/?url=https://petstore3.swagger.io/api/v3/openapi.json'
+open 'http://localhost:8000/rapidoc/?url=https://petstore3.swagger.io/api/v3/openapi.json'
+open 'http://localhost:8000/scalar/?url=https://petstore3.swagger.io/api/v3/openapi.json'
 ```
 
-Then open:
+## Configuration
 
-- http://localhost:8000 — Landing page with all viewers
-- http://localhost:8000/swagger/?url=https://petstore3.swagger.io/api/v3/openapi.json
-- http://localhost:8000/redoc/?url=https://petstore3.swagger.io/api/v3/openapi.json
-- http://localhost:8000/elements/?url=https://petstore3.swagger.io/api/v3/openapi.json
-- http://localhost:8000/rapidoc/?url=https://petstore3.swagger.io/api/v3/openapi.json
-- http://localhost:8000/scalar/?url=https://petstore3.swagger.io/api/v3/openapi.json
-
-## Deployment
+Run it with Docker Compose:
 
 ```yaml
 services:
@@ -112,13 +116,26 @@ services:
 docker compose up
 ```
 
+## Versions
+
+| Version | Release |
+|---------|---------|
+| `dockette/apidoc:YYYY.MM.DD` | release `YYYY.MM.DD` |
+| `dockette/apidoc:latest` | latest build of `master` |
+
+Releases are listed on [GitHub](https://github.com/dockette/apidoc/releases).
+
 ## Development
 
 ```sh
-make build
-make run
+make build     # build the image
+make run       # run the image on port 8000
+make push      # push the image
+make version   # print VERSION
+make release   # set today's date in VERSION
 ```
 
 ## Maintenance
 
-See [how to contribute](https://github.com/dockette/.github/blob/master/CONTRIBUTING.md) to this package. Consider to [support](https://github.com/sponsors/f3l1x) **f3l1x**. Thank you for using this package.
+See [how to contribute](https://github.com/dockette/.github/blob/master/CONTRIBUTING.md) to this package. Consider to
+[support](https://github.com/sponsors/f3l1x) **f3l1x**. Thank you for using this package.
